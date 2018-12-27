@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+    p Welcome to #{title}
+    label username: 
+    input(id='username' type='text' placeholder='username')
+    br
+    label password: 
+    input(id='password' type='text' placeholder='password')
+    br
+    button Login
+    button Create Account
+
