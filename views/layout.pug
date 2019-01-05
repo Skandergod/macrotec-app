@@ -5,7 +5,16 @@ html
     link(rel='stylesheet', href='/assets/stylesheets/style.css')
     link(rel='stylesheet', href='/assets/style.css')
     title Sign In
-  body
+  body.app
+    #loader
+      .spinner
+    script.
+      window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      setTimeout(() => {
+      loader.classList.add('fadeOut');
+      }, 300);
+      });
     block content
   script(src="/assets/vendor.js")
   script(src="/assets/bundle.js")

@@ -1,16 +1,6 @@
 extends layout
 
 block content
-  body.app
-  #loader
-    .spinner
-  script.
-    window.addEventListener('load', () => {
-    const loader = document.getElementById('loader');
-    setTimeout(() => {
-    loader.classList.add('fadeOut');
-    }, 300);
-    });
   .peers.ai-s.fxw-nw.h-100vh
       .peer.peer-greed.h-100.pos-r.bgr-n.bgpX-c.bgpY-c.bgsz-cv(class='d-n@sm-', style='background-image: url("assets/static/images/bg.jpg");')
         .pos-a.centerXY
