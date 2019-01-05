@@ -1,5 +1,6 @@
 extends layout
 
+
 block content
   .peers.ai-s.fxw-nw.h-100vh
       .peer.peer-greed.h-100.pos-r.bgr-n.bgpX-c.bgpY-c.bgsz-cv(class='d-n@sm-', style='background-image: url("assets/static/images/bg.jpg");')
@@ -23,4 +24,4 @@ block content
                         label.peers.peer-greed.js-sb.ai-c(for='inputCall1')
                           span.peer.peer-greed Recordarme
                   .peer
-                    button.btn.btn-primary Login
+                    button.btn.btn-primary( onclick="login()" ) Login

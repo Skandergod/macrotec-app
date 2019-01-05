@@ -1,5 +1,4 @@
-var mysql = require('mysql');
-var connection = mysql.createConnection({
+var connection = ({
     host     : 'businet-web.com',
     database     : 'fsanmcbx_macrotecApp',
     user : 'fsanmcbx_macrote',

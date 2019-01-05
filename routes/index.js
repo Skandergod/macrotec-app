@@ -1,5 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var mysql = require('mysql');
+const request = require('./api/connect');
+var connection = mysql.createConnection({request});
+
+function login(){
+  connection.connect();
+  console.log('me invocaron!');
+  connection.close();
+};
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
