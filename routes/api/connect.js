@@ -1,8 +1,8 @@
 var connection = ({
     host     : 'businet-web.com',
-    user     : 'fsanmcbx_macrotecApp',
-    password : 'fsanmcbx_macrote',
-    database : 'appcontraseña'
+    database     : 'fsanmcbx_macrotecApp',
+    user : 'fsanmcbx_macrote',
+    password : 'appcontraseña'
   });
 
   module.exports = connection;

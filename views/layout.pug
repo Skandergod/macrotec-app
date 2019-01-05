@@ -15,6 +15,13 @@ html
       loader.classList.add('fadeOut');
       }, 300);
       });
-    block content
+    div
+      // #Left Sidebar ====================
+      include sidebar
+      // #Main ============================
+      .page-container
+        include header
+        block content
+    include footer
   script(src="/assets/vendor.js")
   script(src="/assets/bundle.js")
