@@ -1,6 +1,6 @@
 var connection = ({
     host     : 'localhost',
-    database     : 'macrotecApp',
+    database : 'macrotecapp',
     user : 'root',
     password : ''
   });

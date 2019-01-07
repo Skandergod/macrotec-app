@@ -18,10 +18,10 @@ router.get('/administracion/cursos', function(req, res, next) {
 });
 
 
-  router.post('/login',
+router.post('/login',
   passport.authenticate('local', { successRedirect: '/dashboard',
-                                   failureRedirect: '/',
-                                   failureFlash: true })
+                                    failureRedirect: '/',
+                                    failureFlash: true })  
 );
 
 module.exports = router;
