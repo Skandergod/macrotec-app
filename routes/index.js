@@ -19,7 +19,7 @@ router.get('/administracion/cursos', function(req, res, next) {
 
 
 router.post('/login',
-  passport.authenticate('local', { successRedirect: '/dashboard',
+  passport.authenticate('local', { successRedirect: '/home',
                                     failureRedirect: '/',
                                     failureFlash: true })  
 );

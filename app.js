@@ -4,12 +4,12 @@ var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 var path = require('path');
 var app = express();
-
+var bodyParser = require("body-parser");
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 var mysql = require('mysql');
 const request = require('./routes/api/connect');
-var connection = mysql.createConnection({request});
+var connection = mysql.createConnection(request);
 var flash = require('connect-flash');
 
 var passport = require('passport')
@@ -17,10 +17,13 @@ var passport = require('passport')
 
 app.use(expressSession({secret: 'mySecretKey'})); 
 app.use(flash());
-passport.use(new LocalStrategy(
-  function(username, password, done) {
+
+passport.use(new LocalStrategy({
+  passReqToCallback : true
+},
+  function(req, username, password, done) {
     connection.connect();
-    connection.query('SELECT username, password FROM users WHERE username = '+ username +' AND password = '+ password +';',
+    connection.query('SELECT username, password FROM users WHERE username = "'+ username +'" AND password = "'+ password +'";',
     function(err,rows){
       if (err)
           return done(err);
@@ -29,12 +32,23 @@ passport.use(new LocalStrategy(
       } 
     if (!( rows[0].password == password))
       return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
-    connection.close();
+    connection.end();
     return done(null, rows[0]);
   });
 }));
 
+app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
   
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -76,5 +90,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;
