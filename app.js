@@ -16,18 +16,25 @@ var passport = require('passport')
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }
-));
+
+    connection.connect();
+    connection.query('SELECT username, password FROM users WHERE username = '+ username +' AND password = '+ password +';',
+    function(err,rows){
+      if (err)
+          return done(err);
+       if (!rows.length) {
+          return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
+      } 
+
+    if (!( rows[0].password == password))
+      return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+
+    
+    connection.close();
+    return done(null, rows[0]);
+  });
+
+}));
 
 
   
