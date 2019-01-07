@@ -9,7 +9,7 @@ block content
               img.pos-a.centerXY(src='assets/static/images/logo.png', alt='')
       .col-12.col-md-4.peer.pX-40.pY-80.h-100.bgc-white.scrollable.pos-r(style='min-width: 320px;')
         h4.fw-300.c-grey-900.mB-40 Login
-        form
+        form(action="/login" method="post")
             .form-group
               label.text-normal.text-dark Usuario
               input.form-control(type='text', placeholder='John Doe')
@@ -24,4 +24,4 @@ block content
                         label.peers.peer-greed.js-sb.ai-c(for='inputCall1')
                           span.peer.peer-greed Recordarme
                   .peer
-                    button.btn.btn-primary( onclick="login()" ) Login
+                    button.btn.btn-primary Login

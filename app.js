@@ -5,6 +5,32 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 
+var mysql = require('mysql');
+const request = require('./routes/api/connect');
+var connection = mysql.createConnection({request});
+
+var passport = require('passport')
+  , LocalStrategy = require('passport-local').Strategy;
+
+
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
+
+  
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
