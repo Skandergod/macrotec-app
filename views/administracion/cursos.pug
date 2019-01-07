@@ -1,0 +1,102 @@
+extends ../layout
+block content
+    div
+        // #Left Sidebar ====================
+        include ../sidebar
+        // #Main ============================
+        .page-container
+            include ../header
+            main.main-content.bgc-grey-100
+                #mainContent
+                    .container-fluid
+                        h4.c-grey-900.mT-10.mB-30 Gestión de Cursos
+                        .row
+                            .col-md-12
+                                .bgc-white.bd.bdrs-3.p-20.mB-20.position-relative
+                                    h4.c-grey-900.mB-20 Agregar nuevo curso:
+                                    form
+                                        .row 
+                                            .col-12.col-md-4.mb-3 
+                                                .form-group 
+                                                    select.form-control(name="nombre_software")
+                                                        option(value="" disabled selected) Seleccionar Software
+                                            .col-12.col-md-2.mb-3 
+                                                .form-group 
+                                                    select.form-control(name="sede")
+                                                        option(value="" disabled selected) Sede
+                                            .col-12.col-md-2.mb-3 
+                                                .form-group 
+                                                    select.form-control(name="nombre_sofware")
+                                                        option(value="" disabled selected) Aula
+                                            .col-12.col-md-2.mb-3  
+                                                .form-group
+                                                    input.form-control(type="number" placeholder="Cupos" name="cupos")      
+                                            .col-12.col-md-2.mb-3  
+                                                .form-group
+                                                    .timepicker-input.input-icon.form-group
+                                                        .input-group
+                                                            .input-group-addon.bgc-white.bd.bdwR-0
+                                                                i.ti-calendar
+                                                            input.form-control.bdc-grey-200.start-date(type='text', placeholder='Fecha', name="fecha", data-provide='datepicker')
+                                        .row     
+                                            .col-12.col-md-2.mb-3  
+                                                .form-group
+                                                    .timepicker-input.input-icon.form-group
+                                                        .input-group
+                                                            .input-group-addon.bgc-white.bd.bdwR-0
+                                                                i.ti-calendar
+                                                            input.form-control.bdc-grey-200.time-date(type='text', placeholder='Hora Inicio', name="hora_ini")
+                                            .col-12.col-md-2.mb-3  
+                                                .form-group
+                                                    .timepicker-input.input-icon.form-group
+                                                        .input-group
+                                                            .input-group-addon.bgc-white.bd.bdwR-0
+                                                                i.ti-calendar
+                                                            input.form-control.bdc-grey-200.time-date(type='text', data-format="hh:mm:ss", placeholder='Hora Fin', name="hora_fin", data-provide='datepicker')
+                                            .col-12.col-md-2.mb-3  
+                                                .form-group
+                                                    input.form-control(type="text" placeholder="Hora Fin" name="hora_fin")
+
+                                            .col-12.col-md-2.mb-3  
+                                                .form-group
+                                                    input(type="submit" value="Crear" class="btn btn-primary" name="nombre_sofware")
+
+                                    .tablaEditable
+                                        table#dataTable.table.table-striped.table-bordered(cellspacing='0', width='100%')
+                                            thead
+                                                tr
+                                                    th Nombre del Software
+                                                    th Modalidad
+                                                    th 
+                                            tfoot
+                                                tr
+                                                    th Nombre del Software
+                                                    th Modalidad
+                                                    th 
+                                            tbody
+                                                tr
+                                                    td Autocad 2D&3D Complete
+                                                    td Presencial
+                                                    td.text-right
+                                                        a.editar
+                                                            i.c-orange-500.ti-pencil.mr-2
+                                                        a.editar
+                                                            i.c-red-500.ti-close
+                                                tr
+                                                    td Autocad 2D
+                                                    td Presencial
+                                                    td.text-right
+                                                        a.editar
+                                                            i.c-orange-500.ti-pencil.mr-2
+                                                        a.editar
+                                                            i.c-red-500.ti-close
+                                                tr
+                                                    td Autocad 3D
+                                                    td Online
+                                                    td.text-right
+                                                        a.editar
+                                                            i.c-orange-500.ti-pencil.mr-2
+                                                        a.editar
+                                                            i.c-red-500.ti-close
+                                                
+    include ../footer 

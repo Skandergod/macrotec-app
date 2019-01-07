@@ -20,5 +20,8 @@ router.get('/home', function(req, res, next) {
 router.get('/administracion/softwares-autodesk', function(req, res, next) {
   res.render('administracion/softwares-autodesk', { title: 'Softwares Autodesk' });
 });
+router.get('/administracion/cursos', function(req, res, next) {
+  res.render('administracion/cursos', { title: 'Cursos' });
+});
 module.exports = router;
 //https://www.youtube.com/watch?v=mAOxWf36YLo
