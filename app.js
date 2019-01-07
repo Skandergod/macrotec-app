@@ -1,22 +1,24 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var app = express();
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
-
 var mysql = require('mysql');
 const request = require('./routes/api/connect');
 var connection = mysql.createConnection({request});
-
+var flash = require('connect-flash');
+var expressSession = require('express-session');
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
 
-
-
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-
+app.use(expressSession({secret: 'mySecretKey'})); 
+app.use(flash());
+passport.use(new LocalStrategy({
+    passReqToCallback : true
+  },
+  function(req, username, password, done) {
     connection.connect();
     connection.query('SELECT username, password FROM users WHERE username = '+ username +' AND password = '+ password +';',
     function(err,rows){
@@ -41,7 +43,7 @@ passport.use(new LocalStrategy(
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
